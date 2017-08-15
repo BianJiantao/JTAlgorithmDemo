@@ -11,8 +11,8 @@
 
 #include <stdio.h>
 
-
 #endif /* sort_h */
+
 
 /**
  *  桶排序
@@ -38,8 +38,13 @@ void bubbleSort(int a[], int length);
  */
 void quickSort(int a[], int length);
 
-
-
+/**
+ *   最大堆排序
+ *
+ *  @param a      待排序数组
+ *  @param length 数组长度
+ */
+void  maxHeapSort(int a[],int length);
 
 
 

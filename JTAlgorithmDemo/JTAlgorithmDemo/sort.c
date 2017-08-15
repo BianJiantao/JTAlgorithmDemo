@@ -6,12 +6,16 @@
 //  Copyright © 2017年 BJT. All rights reserved.
 //
 
-#include "sort.h"
 
 #include <string.h>
 #include <stdlib.h>
 
-/********* 桶排序 *******/
+
+#include "sort.h"
+#include "common.h"
+
+
+/********* 桶排序 *********************/
 
 void displaySortedArray(int sorted[],int length);
 
@@ -164,7 +168,6 @@ void qSort(int a[],int left, int right){
 void quickSort(int a[], int length){
     
     printf("***********快速排序**************\n");
-    
     // >排序前
     printf("排序前\n");
     for (int i = 0; i < length; i++) {
@@ -186,6 +189,122 @@ void quickSort(int a[], int length){
     
 }
 
+/*****************************************/
+
+/**********最大堆排序*********************/
+
+/**
+ *  对非叶结点 i 向下调整,使其符合最大堆特性
+ *
+ *  @param a 二叉树
+ *  @param i 待调整节点编号
+ */
+void shiftDown(int heap[],int i,int length){
+    
+    BOOL flag = FALSE; // 标记是否已是最大堆
+    while( (i*2 <= length-1) && flag == FALSE ){ // 当前节点有左子节点,且需要向下调整
+        
+        int max ; // 当前节点及其子节点中最大的节点编号
+        if (heap[i] < heap[i*2]) { // 当前节点小于左子节点
+          
+            max = 2*i;
+            
+        }else{
+            
+            max = i;
+        }
+        
+        if ( (i*2+1) <= length-1 ) { // 当前节点有右子节点
+            
+            if (heap[max] < heap[i*2+1]) { // 右子节点更大
+                
+                max = i * 2 + 1;
+            }
+            
+        }
+        
+        if (max != i ) { // 最大的节点不是自己,进行交换
+            
+            // 异或交换两个数
+            heap[i] = heap[i]^heap[max];
+            heap[max] = heap[i]^heap[max];
+            heap[i] = heap[i]^heap[max];
+            
+            i = max; // 继续向下调整
+        } else{
+            
+            flag = TRUE; // 已是最大堆
+        }
+    
+    
+    
+    }
+    
+}
+
+
+/** 创建最大堆 */
+void creatMaxHeap(int heap[],int length){
+    
+    for (int i = length * 0.5 - 1; i >= 0; i--) { // 二叉树的非叶节点
+        
+        shiftDown(heap,i,length);
+        
+        
+    }
+    
+}
+
+/** 排序 */
+void hSort(int heap[],int length){
+    
+    
+    while (length > 1) {
+        
+        // 堆的首尾交换
+        int end = length -1 ;
+        heap[0] = heap[0]^heap[end];
+        heap[end] = heap[0]^heap[end];
+        heap[0] = heap[0]^heap[end];
+        
+        // 堆尾已是最大值,排除,对剩余部分继续排序
+        length--;
+        
+        // 堆首向下调整,使其满足最大堆特性
+        shiftDown(heap, 0, length);
+        
+    }
+    
+    
+}
+
+void  maxHeapSort(int heap[],int length){
+    
+    printf("***********最大堆排序**************\n");
+    // >排序前
+    printf("排序前\n");
+    for (int i = 0; i < length; i++) {
+        printf("%d ", heap[i]);
+    }
+    printf("\n");
+    
+    
+    // >创造最大堆
+    creatMaxHeap(heap, length);
+    
+    // >从小到大排序
+    hSort(heap,length);
+    
+    
+    // >排序后输出
+    printf("排序后\n");
+    for (int i = 0; i < length; i++) {
+        printf("%d ",heap[i]);
+    }
+    printf("\n");
+    printf("******************************\n");
+}
 
 
 /*****************************************/
+

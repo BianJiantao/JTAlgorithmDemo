@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6CE6EEE71F419C09006065D7 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 6CE6EEE61F419C09006065D7 /* main.c */; };
 		6CE6EEEF1F419CDD006065D7 /* sort.c in Sources */ = {isa = PBXBuildFile; fileRef = 6CE6EEED1F419CDD006065D7 /* sort.c */; settings = {ASSET_TAGS = (); }; };
+		6CE6EEF21F428F4B006065D7 /* search.c in Sources */ = {isa = PBXBuildFile; fileRef = 6CE6EEF01F428F4B006065D7 /* search.c */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,9 @@
 		6CE6EEE61F419C09006065D7 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		6CE6EEED1F419CDD006065D7 /* sort.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sort.c; sourceTree = "<group>"; };
 		6CE6EEEE1F419CDD006065D7 /* sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sort.h; sourceTree = "<group>"; };
+		6CE6EEF01F428F4B006065D7 /* search.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = search.c; sourceTree = "<group>"; };
+		6CE6EEF11F428F4B006065D7 /* search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = search.h; sourceTree = "<group>"; };
+		6CE6EEF31F4295A0006065D7 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,9 @@
 				6CE6EEE61F419C09006065D7 /* main.c */,
 				6CE6EEED1F419CDD006065D7 /* sort.c */,
 				6CE6EEEE1F419CDD006065D7 /* sort.h */,
+				6CE6EEF01F428F4B006065D7 /* search.c */,
+				6CE6EEF11F428F4B006065D7 /* search.h */,
+				6CE6EEF31F4295A0006065D7 /* common.h */,
 			);
 			path = JTAlgorithmDemo;
 			sourceTree = "<group>";
@@ -123,6 +130,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CE6EEF21F428F4B006065D7 /* search.c in Sources */,
 				6CE6EEE71F419C09006065D7 /* main.c in Sources */,
 				6CE6EEEF1F419CDD006065D7 /* sort.c in Sources */,
 			);
