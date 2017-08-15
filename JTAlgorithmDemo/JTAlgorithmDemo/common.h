@@ -16,3 +16,13 @@
 #define  FALSE 0
 #define TRUE 1
 #define BOOL int
+
+
+/**
+ *  坐标点
+ */
+typedef struct {
+    int x;
+    int y;
+    
+}Point;

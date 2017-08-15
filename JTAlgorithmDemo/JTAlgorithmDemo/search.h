@@ -12,8 +12,8 @@
 #include <stdio.h>
 
 #endif /* search_h */
-
+#include "common.h"
 
 void depthFirstSearch(int n);
 
-void breadthFirstSearch();
+void breadthFirstSearch(int map[][4],int row,int col,Point start,Point target);

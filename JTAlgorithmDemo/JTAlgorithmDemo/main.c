@@ -31,6 +31,7 @@ typedef enum {
     
     SearchTypeDepthFirst, // 深度优先
     SearchTypeBreadthFirst  // 广度优先
+    
 }SearchType;
 
 
@@ -86,18 +87,42 @@ void sortGo(SortType sortType){
 void searchGo( SearchType searchType){
     
     switch (searchType) {
-        case SearchTypeDepthFirst: // >深度优先搜索  >> 输出 n 的全排列
+        case SearchTypeDepthFirst: // >深度优先搜索   >> 输出 n 的全排列
             {
+                printf("******* 深度优先搜索 **************\n");
                 int n = 4;
                 depthFirstSearch(n);
                 
                 break;
             }
             
-        case SearchTypeBreadthFirst: // >广度优先搜索
+        case SearchTypeBreadthFirst: // >广度优先搜索  >> 搜索地图中两点间最短路径
+        {
+            int map[5][4] = { // 地图, 坐标 1 表示障碍物,不能通行; 0 表示可以通过
+                {0,0,1,0},
+                {0,0,0,0},
+                {0,0,1,0},
+                {0,1,0,0},
+                {0,0,0,1}
+            };
             
-            breadthFirstSearch();
+            Point start = {0,0}; // 起点
+            Point target = {3,2}; // 目标点
             
+            printf("******* 广度优先搜索--搜索地图两给定点最短路径 **************\n");
+            printf("给定地图, 1 表示障碍物, 0 表示可以通行\n");
+            for (int i=0; i<5; i++) {
+                for (int j=0; j<4; j++) {
+                    
+                    printf("%d ",map[i][j]);
+                    
+                }
+                printf("\n");
+            }
+            printf("起点:(%d,%d)---目标点:(%d,%d)\n",start.x,start.y,target.x,target.y);
+            
+            breadthFirstSearch(map,5,4,start,target);
+        }
             break;
             
         default:
@@ -109,11 +134,11 @@ void searchGo( SearchType searchType){
 
 int main() {
     
-    // 排序方法测试
+    // 排序算法测试
     sortGo(SortTypeMaxHeap);
     
-    // 搜索方法测试
-    searchGo(SearchTypeDepthFirst);
+    // 搜索算法测试
+    searchGo(SearchTypeBreadthFirst);
     
     
     return 0;
