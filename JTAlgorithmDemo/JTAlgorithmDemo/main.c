@@ -10,7 +10,7 @@
 
 #include "sort.h"
 #include "search.h"
-
+#include "shortestPath.h"
 
 /**
  * 排序类型
@@ -34,14 +34,22 @@ typedef enum {
     
 }SearchType;
 
+/**
+ * 最短路径搜索类型
+ */
+typedef enum {
+    
+    ShortestPathSearchTypeFloyd // Floyd-Warshall算法
+    
+}ShortestPathSearchType;
 
 
+
+#pragma mark - 排序
 /**
  *  排序算法
  */
 void sortGo(SortType sortType){
-    
-    /************排序算法******************************************/
     
     // 待排序数列
     int array[] = {1,53,5,9,4,45,21,7,3,4,0};
@@ -76,10 +84,10 @@ void sortGo(SortType sortType){
             break;
     }
     
-    /******************************************************/
-    
-    
 }
+
+
+#pragma mark - 深度/广度--优先搜索
 
 /**
  *  搜索算法 , 深度优先搜索/广度优先搜索
@@ -132,6 +140,48 @@ void searchGo( SearchType searchType){
 }
 
 
+#pragma mark - 最短路径问题
+
+void shortestPathGo(ShortestPathSearchType shortestPathSearchType){
+    
+    
+    switch (shortestPathSearchType) {
+        case ShortestPathSearchTypeFloyd: // FloydWarshall算法求两点间最短路径
+            {
+                
+                printf("*******FloydWarshall算法求任意两点间最短路径**************\n");
+                int map[4][4] = { // map[i][j] = s  表示: i,j 两点间的距离是 s,  inf 表示 i,j 两点走不通
+                    {0,2,6,4},
+                    {inf,0,3,inf},
+                    {7,inf,0,1},
+                    {5,inf,12,0}
+                };
+                
+                printf("各点间距离图: 999999 表示两点走不通\n");
+                for (int i=0; i<4; i++) {
+                    for (int j=0; j<4; j++) {
+                        
+                        printf("%8d ",map[i][j]);
+                        
+                    }
+                    printf("\n");
+                }
+                
+                // FloydWarshall算法
+                floydWarshallSearch(map,4);
+                
+                
+                break;
+            }
+            
+        default:
+            break;
+    }
+    
+}
+
+
+#pragma mark - 主函数
 int main() {
     
     // 排序算法测试
@@ -139,6 +189,9 @@ int main() {
     
     // 搜索算法测试
     searchGo(SearchTypeBreadthFirst);
+    
+    // 最短路径问题
+    shortestPathGo(ShortestPathSearchTypeFloyd);
     
     
     return 0;

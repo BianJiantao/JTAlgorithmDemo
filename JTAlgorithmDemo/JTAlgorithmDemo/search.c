@@ -14,7 +14,7 @@
 
 
 /********* 深度优先搜索 *********************/
-
+#pragma mark - 深度优先搜索
 /**
  *  深度优先搜索算法实现
  *
@@ -80,6 +80,8 @@ void depthFirstSearch(int n){
 /**********************************************/
 
 /********* 广度优先搜索 *********************/
+#pragma mark - 广度优先搜索
+
 typedef struct {
     
     Point point; // 地图中某一点
@@ -204,8 +206,6 @@ void breadthFirstSearch(int map[][4],int row,int col,Point start,Point target){
     
     
 }
-
-
 
 
 /**********************************************/

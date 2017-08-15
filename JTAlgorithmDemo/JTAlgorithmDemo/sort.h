@@ -11,7 +11,8 @@
 
 #include <stdio.h>
 
-#endif /* sort_h */
+
+#include "common.h"
 
 
 /**
@@ -45,6 +46,13 @@ void quickSort(int a[], int length);
  *  @param length 数组长度
  */
 void  maxHeapSort(int a[],int length);
+
+
+#endif /* sort_h */
+
+
+
+
 
 
 

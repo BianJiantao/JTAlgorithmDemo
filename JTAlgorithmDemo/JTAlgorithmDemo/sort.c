@@ -12,11 +12,11 @@
 
 
 #include "sort.h"
-#include "common.h"
 
 
 /********* 桶排序 *********************/
 
+#pragma mark - 桶排序
 void displaySortedArray(int sorted[],int length);
 
 void bucketSort(int a[],int length, int max){
@@ -71,6 +71,8 @@ void displaySortedArray(int sorted[],int length){
 /**********冒泡排序*********************/
 
 
+#pragma mark - 冒泡排序
+
 void bubbleSort(int a[], int length){
     
     printf("***********冒泡排序**************\n");
@@ -119,6 +121,7 @@ void bubbleSort(int a[], int length){
 
 /**********快速排序*********************/
 
+#pragma mark - 快速排序
 
 /**
  *  递归快速排序
@@ -192,6 +195,8 @@ void quickSort(int a[], int length){
 /*****************************************/
 
 /**********最大堆排序*********************/
+
+#pragma mark - 最大堆排序
 
 /**
  *  对非叶结点 i 向下调整,使其符合最大堆特性
