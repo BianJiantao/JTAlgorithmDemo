@@ -414,7 +414,7 @@ void hSortMaxToMin(int heap[],int length){
 void heapSortTopK(int a[],int length, int K){
     
     
-    printf("***********最小堆排序--Top K问题**************\n");
+    printf("***********最小堆排序--Top K 问题**************\n");
     // >排序前
     printf("给定数组:\n");
     for (int i = 0; i < length; i++) {
@@ -453,6 +453,84 @@ void heapSortTopK(int a[],int length, int K){
 
 }
 
+/*****************************************/
+
+
+/**********归并排序***********************/
+
+#pragma mark - 归并排序
+
+/** 二路合并 ***/
+void merge(int a[],int temp[],int startIndex,int midIndex,int endIndex){
+    
+    int i = startIndex, j = midIndex + 1, k = startIndex;
+    
+    // 左右两路进行比较合并
+    while ( (i != midIndex + 1) && (j != endIndex + 1)  ) {
+        
+        if (a[i] > a[j])
+            temp[k++] = a[j++];
+        else
+            temp[k++] = a[i++];
+        
+    }
+    
+    // 把左右两路未参与比较合并的剩余元素放入临时数组
+    while ( i!= midIndex + 1 ) { // 左路有剩余元素
+        temp[k++] = a[i++];
+    }
+    while ( j!= endIndex + 1 ) {  // 右路有剩余元素
+        temp[k++] = a[j++];
+    }
+    
+    // 调整原数组归并好的部分
+    for( i = startIndex; i <= endIndex; i++ ){
+        a[i] = temp[i];
+    }
+    
+}
+
+/**归并*/
+void mSort(int a[],int temp[],int startIndex,int endIndex){
+    
+    if (startIndex >= endIndex)
+        return;
+    
+    // startIndex <  endIndex的情况
+    // 递归拆分子序列
+    int midIndex = (startIndex + endIndex) * 0.5;
+    mSort(a, temp, startIndex, midIndex);
+    mSort(a, temp, midIndex+1, endIndex);
+    // 排序合并子序列
+    merge(a, temp, startIndex, midIndex, endIndex);
+    
+    
+}
+
+
+void mergeSort(int a[],int length){
+    
+    printf("***********归并排序**************\n");
+    // >排序前
+    printf("给定数组:\n");
+    for (int i = 0; i < length; i++) {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+    
+    int temp[length];
+    
+    mSort(a, temp, 0, length-1);
+    
+    // >排序后输出
+    printf("排序后:\n");
+    for (int i = 0; i < length; i++) {
+        printf("%d ",a[i]);
+    }
+    printf("\n");
+    printf("******************************\n");
+    
+}
 
 
 

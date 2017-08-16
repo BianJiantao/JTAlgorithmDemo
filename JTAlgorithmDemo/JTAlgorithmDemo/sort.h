@@ -53,6 +53,16 @@ void  maxHeapSort(int a[],int length);
  */
 void heapSortTopK(int a[],int length, int K);
 
+/**
+ *  归并排序
+ *
+ *  @param a      待排序数组
+ *  @param length 数组长度
+ */
+void mergeSort(int a[],int length);
+
+
+
 #endif /* sort_h */
 
 
