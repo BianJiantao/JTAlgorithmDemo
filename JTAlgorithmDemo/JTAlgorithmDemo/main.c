@@ -41,7 +41,8 @@ typedef enum {
  */
 typedef enum {
     
-    ShortestPathSearchTypeFloyd // Floyd-Warshall算法
+    ShortestPathSearchTypeFloyd, // Floyd-Warshall算法
+    ShortestPathSearchTypeDijkstra  // Dijkstra算法
     
 }ShortestPathSearchType;
 
@@ -92,7 +93,7 @@ void sortGo(SortType sortType){
             }
             
         case SortTypeMerge:
-            
+            // 6> 归并排序  时间复杂度: O( N*Log(N) )
             mergeSort(array, arrayLength);
             
             break;
@@ -163,7 +164,7 @@ void shortestPathGo(ShortestPathSearchType shortestPathSearchType){
     
     
     switch (shortestPathSearchType) {
-        case ShortestPathSearchTypeFloyd: // FloydWarshall算法求两点间最短路径
+        case ShortestPathSearchTypeFloyd: // FloydWarshall算法求任意两点间最短路径
             {
                 
                 printf("*******FloydWarshall算法求任意两点间最短路径**************\n");
@@ -191,6 +192,38 @@ void shortestPathGo(ShortestPathSearchType shortestPathSearchType){
                 break;
             }
             
+        case ShortestPathSearchTypeDijkstra:  // Dijkstra算法求给定源点到其他各点的最短距离
+            {
+                printf("*******Dijkstra算法求给定源点到其他各点的最短距离*****************\n");
+                int map[6][6] = { // map[i][j] = s  表示: i,j 两点间的距离是 s,  inf 表示 i,j 两点走不通
+                    {0,1,12,inf,inf,inf},
+                    {inf,0,9,3,inf,inf},
+                    {inf,inf,0,inf,5,inf},
+                    {inf,inf,4,0,13,15},
+                    {inf,inf,inf,inf,0,4},
+                    {inf,inf,inf,inf,inf,0}
+                };
+                
+                printf("各点间距离图: 999999 表示两点走不通\n");
+                for (int i=0; i<6; i++) {
+                    for (int j=0; j<6; j++) {
+                        
+                        printf("%8d ",map[i][j]);
+                        
+                    }
+                    printf("\n");
+                }
+                
+                int pointCount = 6;
+                int sourcePoint = 1; // 取值: 0 ~ pointCount-1
+                
+                dijkstraSearch(map,sourcePoint,pointCount);
+                
+                
+                break;
+            }
+            
+            
         default:
             break;
     }
@@ -211,7 +244,7 @@ int main() {
     searchGo(SearchTypeBreadthFirst);
     
 // 最短路径问题
-    shortestPathGo(ShortestPathSearchTypeFloyd);
+    shortestPathGo(ShortestPathSearchTypeDijkstra);
     
     
     return 0;
