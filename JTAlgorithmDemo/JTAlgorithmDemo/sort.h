@@ -47,6 +47,11 @@ void quickSort(int a[], int length);
  */
 void  maxHeapSort(int a[],int length);
 
+/**
+ *  利用堆特性, 找出前 K 大的数
+ *
+ */
+void heapSortTopK(int a[],int length, int K);
 
 #endif /* sort_h */
 

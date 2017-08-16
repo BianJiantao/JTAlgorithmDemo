@@ -204,26 +204,26 @@ void quickSort(int a[], int length){
  *  @param a 二叉树
  *  @param i 待调整节点编号
  */
-void shiftDown(int heap[],int i,int length){
+void shiftDownToMaxHeap(int heap[],int i,int length){
     
     BOOL flag = FALSE; // 标记是否已是最大堆
-    while( (i*2 <= length-1) && flag == FALSE ){ // 当前节点有左子节点,且需要向下调整
+    while( (i*2+1 <= length-1) && flag == FALSE ){ // 当前节点有左子节点,且需要向下调整
         
         int max ; // 当前节点及其子节点中最大的节点编号
-        if (heap[i] < heap[i*2]) { // 当前节点小于左子节点
+        if (heap[i] < heap[i*2+1]) { // 当前节点小于左子节点
           
-            max = 2*i;
+            max = 2*i+1;
             
         }else{
             
             max = i;
         }
         
-        if ( (i*2+1) <= length-1 ) { // 当前节点有右子节点
+        if ( (i*2+2) <= length-1 ) { // 当前节点有右子节点
             
-            if (heap[max] < heap[i*2+1]) { // 右子节点更大
+            if (heap[max] < heap[i*2+2]) { // 右子节点更大
                 
-                max = i * 2 + 1;
+                max = i * 2 + 2;
             }
             
         }
@@ -253,15 +253,15 @@ void creatMaxHeap(int heap[],int length){
     
     for (int i = length * 0.5 - 1; i >= 0; i--) { // 二叉树的非叶节点
         
-        shiftDown(heap,i,length);
+        shiftDownToMaxHeap(heap,i,length);
         
         
     }
     
 }
 
-/** 排序 */
-void hSort(int heap[],int length){
+/** 排序 , 从小到大*/
+void hSortMinToMax(int heap[],int length){
     
     
     while (length > 1) {
@@ -276,7 +276,7 @@ void hSort(int heap[],int length){
         length--;
         
         // 堆首向下调整,使其满足最大堆特性
-        shiftDown(heap, 0, length);
+        shiftDownToMaxHeap(heap, 0, length);
         
     }
     
@@ -298,7 +298,7 @@ void  maxHeapSort(int heap[],int length){
     creatMaxHeap(heap, length);
     
     // >从小到大排序
-    hSort(heap,length);
+    hSortMinToMax(heap,length);
     
     
     // >排序后输出
@@ -313,3 +313,147 @@ void  maxHeapSort(int heap[],int length){
 
 /*****************************************/
 
+
+/**********堆排序--前 K 大的数*********************/
+
+#pragma mark - 堆排序--TopK
+
+/**
+ *  对非叶结点 i 向下调整,使其符合最小堆特性 , i 从0开始
+ *
+ *  @param a 二叉树
+ *  @param i 待调整节点编号
+ */
+void shiftDownToMinHeap(int heap[],int i,int length){
+    
+    BOOL flag = FALSE; // 标记是否已是最小堆
+    while( (i*2 + 1 <= length-1) && flag == FALSE ){ // 当前节点有左子节点,且需要向下调整
+        
+        int min ; // 当前节点及其子节点中最大的节点编号
+        if (heap[i] > heap[i*2+1]) { // 当前节点大于左子节点
+            
+            min = 2*i+1;
+            
+        }else{
+            
+            min = i;
+        }
+        
+        if ( (i*2+2) <= length-1 ) { // 当前节点有右子节点
+            
+            if (heap[min] > heap[i*2+2]) { // 右子节点更小
+                
+                min = i * 2 + 2;
+            }
+            
+        }
+        
+        if (min != i ) { // 最小的节点不是自己,进行交换
+            
+            // 异或交换两个数
+            heap[i] = heap[i]^heap[min];
+            heap[min] = heap[i]^heap[min];
+            heap[i] = heap[i]^heap[min];
+            
+            i = min; // 继续向下调整
+        } else{
+            
+            flag = TRUE; // 已是最小堆
+        }
+        
+        
+        
+    }
+    
+}
+
+
+/** 创建最小堆 */
+void creatMinHeap(int heap[],int length){
+    
+    for (int i = length * 0.5 - 1; i >= 0; i--) { // 二叉树的非叶节点
+        
+        shiftDownToMinHeap(heap,i,length);
+        
+        
+    }
+    
+}
+
+/** 排序 , 从大到小 */
+void hSortMaxToMin(int heap[],int length){
+    
+    
+    while (length > 1) {
+        
+        // 堆的首尾交换
+        int end = length -1 ;
+        heap[0] = heap[0]^heap[end];
+        heap[end] = heap[0]^heap[end];
+        heap[0] = heap[0]^heap[end];
+        
+        // 堆尾已是最小值,排除,对剩余部分继续排序
+        length--;
+        
+        // 堆首向下调整,使其满足最小堆特性
+        shiftDownToMinHeap(heap, 0, length);
+        
+    }
+    
+    
+}
+
+
+/**
+ *  利用堆特性, 找出前 K 大的数
+ *
+ *  @param a      给定数组
+ *  @param length 数组长度
+ *  @param K
+ */
+void heapSortTopK(int a[],int length, int K){
+    
+    
+    printf("***********最小堆排序--Top K问题**************\n");
+    // >排序前
+    printf("给定数组:\n");
+    for (int i = 0; i < length; i++) {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+    
+    
+    // 取出前 K 个数,建立最小堆
+    int minHeap[K];
+    for (int i=0; i<K; i++) {
+        minHeap[i] = a[i];
+    }
+    creatMinHeap(minHeap, K);
+    
+    for (int i=K; i<length; i++) { // 遍历剩余元素
+        
+        if(minHeap[0] >= a[i])
+            continue;
+        
+        // a[i] > a[0] , 更新堆
+        minHeap[0] = a[i];
+        shiftDownToMinHeap(minHeap, 0, K);
+        
+    }
+    
+    hSortMaxToMin(minHeap, K);
+    
+    printf("前 %d 大的数:\n",K);
+    for (int i=0; i<K; i++) {
+        printf("%d ",minHeap[i]);
+    }
+    
+    printf("\n");
+    printf("******************************\n");
+
+}
+
+
+
+
+/*****************************************/

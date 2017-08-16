@@ -20,7 +20,8 @@ typedef enum {
     SortTypeBucket, // 桶排序
     SortTypeBubble, // 冒泡排序
     SortTypeQuick, // 快速排序
-    SortTypeMaxHeap  // 最大堆排序, 结果是从小到大排序
+    SortTypeMaxHeap,  // 最大堆排序, 结果是从小到大排序
+    SortTypeMinHeapTopK  //  利用堆特性, 找出前 K 大的数
     
 }SortType;
 
@@ -78,6 +79,17 @@ void sortGo(SortType sortType){
             // 4> 最大堆排序  时间复杂度: O( N*Log(N) )
             maxHeapSort(array, arrayLength);
             break;
+            
+        case SortTypeMinHeapTopK:
+            // 5> 利用堆特性, 找出前 K 大的数
+            {
+                int topK = 6;
+                heapSortTopK(array,arrayLength ,topK);
+
+                break;
+                
+            }
+            
             
             
         default:
@@ -185,7 +197,10 @@ void shortestPathGo(ShortestPathSearchType shortestPathSearchType){
 int main() {
     
     // 排序算法测试
+    // 全排序
     sortGo(SortTypeMaxHeap);
+    // 最小堆处理 Top K问题
+    sortGo(SortTypeMinHeapTopK);
     
     // 搜索算法测试
     searchGo(SearchTypeBreadthFirst);
