@@ -11,6 +11,8 @@
 #include "sort.h"
 #include "search.h"
 #include "shortestPath.h"
+#include "dynamicProgramming.h"
+
 
 /**
  * 排序类型
@@ -46,6 +48,15 @@ typedef enum {
     
 }ShortestPathSearchType;
 
+
+/**
+ * 动态规划法具体处理的问题类型
+ */
+typedef enum {
+    
+    DPproblemTypeKnapsackProblem // 0-1背包问题
+    
+}DPproblemType;
 
 
 #pragma mark - 排序
@@ -230,6 +241,36 @@ void shortestPathGo(ShortestPathSearchType shortestPathSearchType){
     
 }
 
+#pragma mark - 动态规划法
+
+void dynamicProgrammingGo( DPproblemType dpProblemType){
+    
+    switch (dpProblemType) {
+            
+        case DPproblemTypeKnapsackProblem: // 0-1 背包问题
+            {
+                int valueArr[7]={10,40,30,50,35,40,30};      // 物品权重(价值)
+                int weightArr[7]={35,30,60,50,40,10,25};      // 物品大小
+                const int MaxWeight = 150;  // 背包所能承受的最大重量
+                
+                // 获取物品个数
+                int count = sizeof(weightArr)/sizeof(weightArr[0]);
+                // 动态规划法求解
+                knapsackProblemWithDP(weightArr, valueArr, count, MaxWeight);
+                
+                
+                break;
+            }
+            
+            
+            
+        default:
+            break;
+    }
+    
+}
+
+
 
 #pragma mark - 主函数
 int main() {
@@ -245,6 +286,10 @@ int main() {
     
 // 最短路径问题
     shortestPathGo(ShortestPathSearchTypeDijkstra);
+    
+// 动态规划法应用
+    // 求解 0-1背包问题
+    dynamicProgrammingGo(DPproblemTypeKnapsackProblem);
     
     
     return 0;

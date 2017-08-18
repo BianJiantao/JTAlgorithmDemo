@@ -22,7 +22,10 @@ typedef struct {
     
 }Point;
 
-
+/**
+ *  获取两个 int 型整数最大值
+ */
+int max_int(int a,int b);
 
 
 #endif /* common_h */
