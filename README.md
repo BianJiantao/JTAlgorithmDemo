@@ -1,10 +1,10 @@
 # JTAlgorithmDemo
-## 算法学习  Algorithm Learning
+## 算法学习 Algorithm Learning  アルゴリズム、勉強しようぜ
 
 ## 排序算法 Sort Algorithm
 
-1. 桶排序 bucketSort
-2. 冒泡排序 bubbleSort
+1. 桶排序 bucket sort
+2. 冒泡排序 bubble sort
 3. 快速排序 quick sort
 4. 堆排序  heap sort
 5. 堆特性处理 Top K 问题   
@@ -23,3 +23,5 @@
 ## 动态规划法 Dynamic Programming
 
 1. Knapsack problem ( 0/1背包问题 )  
+    * 动态规划法解 0/1背包问题(非递归)
+    * 回溯法解 0/1背包问题(补充说明,非动态规划法)

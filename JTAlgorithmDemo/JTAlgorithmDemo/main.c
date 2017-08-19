@@ -54,7 +54,7 @@ typedef enum {
  */
 typedef enum {
     
-    DPproblemTypeKnapsackProblem // 0-1背包问题
+    DPproblemTypeKnapsackProblem // 动态规划法解 0-1背包问题
     
 }DPproblemType;
 
@@ -251,12 +251,24 @@ void dynamicProgrammingGo( DPproblemType dpProblemType){
             {
                 int valueArr[7]={10,40,30,50,35,40,30};      // 物品权重(价值)
                 int weightArr[7]={35,30,60,50,40,10,25};      // 物品大小
-                const int MaxWeight = 150;  // 背包所能承受的最大重量
+                int MaxWeight = 150;  // 背包所能承受的最大重量
+                
+//                int weightArr[5]={2,2,6,5,4};      // 物品权重(价值)
+//                int valueArr[5]={6,3,5,4,6};      // 物品大小
+//                int MaxWeight = 10;  // 背包所能承受的最大重量
+                
                 
                 // 获取物品个数
                 int count = sizeof(weightArr)/sizeof(weightArr[0]);
-                // 动态规划法求解
+               
+                // 动态规划法求解 0-1 背包问题
                 knapsackProblemWithDP(weightArr, valueArr, count, MaxWeight);
+                
+                
+                /**** 补充: 回溯法解 0-1背包问题 **/
+                knapsackProblemWithBacktracking(weightArr, valueArr, count, MaxWeight);
+                
+                
                 
                 
                 break;
