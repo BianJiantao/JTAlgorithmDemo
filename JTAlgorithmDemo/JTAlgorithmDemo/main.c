@@ -54,7 +54,8 @@ typedef enum {
  */
 typedef enum {
     
-    DPproblemTypeKnapsackProblem // 动态规划法解 0-1背包问题
+    DPproblemTypeKnapsackProblem, // 动态规划法解 0-1背包问题
+    DPproblemTypeLevenshteinDistance // 字符串编辑距离
     
 }DPproblemType;
 
@@ -127,7 +128,7 @@ void searchGo( SearchType searchType){
         case SearchTypeDepthFirst: // >深度优先搜索   >> 输出 n 的全排列
             {
                 printf("******* 深度优先搜索 **************\n");
-                int n = 4;
+                int n = 3;
                 depthFirstSearch(n);
                 
                 break;
@@ -269,11 +270,22 @@ void dynamicProgrammingGo( DPproblemType dpProblemType){
                 knapsackProblemWithBacktracking(weightArr, valueArr, count, MaxWeight);
                 
                 
+                break;
+            }
+            
+        case DPproblemTypeLevenshteinDistance:  // 两个字符串间的最小编辑距离问题, Levenshtein Distance
+            {
+                char *srcStr = "abc";
+                char *targetStr = "abd";
+                
+                // ***补充: 单纯的递归法
+                levenshteinDistanceWithPureRecursion(srcStr, targetStr);
+                
+                
                 
                 
                 break;
             }
-            
             
             
         default:
@@ -289,11 +301,12 @@ int main() {
     
 // 排序算法测试
     // 全排序
-    sortGo(SortTypeMerge);
+    sortGo(SortTypeMaxHeap);
     // 最小堆处理 Top K问题
     sortGo(SortTypeMinHeapTopK);
     
 // 搜索算法测试
+    searchGo(SearchTypeDepthFirst);
     searchGo(SearchTypeBreadthFirst);
     
 // 最短路径问题
@@ -302,6 +315,8 @@ int main() {
 // 动态规划法应用
     // 求解 0-1背包问题
     dynamicProgrammingGo(DPproblemTypeKnapsackProblem);
+    // 字符串编辑距离 Levenshtein Distance
+    dynamicProgrammingGo(DPproblemTypeLevenshteinDistance);
     
     
     return 0;

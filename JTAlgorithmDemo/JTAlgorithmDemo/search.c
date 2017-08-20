@@ -120,12 +120,9 @@ void breadthFirstSearch(int map[][4],int row,int col,Point start,Point target){
         return;
     
     // >准备工作
-     BOOL *book[row]; // 标记某一坐标点是否在路径中
-    for (int i =0 ; i<row; i++) {
-        
-        if ((book[i] = (int *)malloc(sizeof(int)*col))== NULL) return;
-        memset(book[i],FALSE,col * sizeof(int));
-    }
+     BOOL (*book)[col]; // 二维数组, 标记某一坐标点是否在路径中
+     if ((book = (BOOL (*)[])malloc(sizeof(int)*col*row))== NULL) return;
+     memset(book,FALSE,row*col * sizeof(int));
     
     int nextVector[4][2] = { // 方向矢量, 顺时针
         {0,1}, // 向右走
@@ -204,6 +201,7 @@ void breadthFirstSearch(int map[][4],int row,int col,Point start,Point target){
     
     printf("\n********************************************\n");
     
+    free(book); // 释放内存
     
 }
 

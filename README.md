@@ -22,6 +22,8 @@
 
 ## 动态规划法 Dynamic Programming
 
-1. Knapsack problem ( 0/1背包问题 )  
+1. 0/1背包问题 ( Knapsack problem ) 
     * 动态规划法解 0/1背包问题(非递归)
     * 回溯法解 0/1背包问题(补充说明,非动态规划法)
+2. 两个字符串的最小编辑距离问题 ( Levenshtein Distance )
+    * 单纯递归法计算

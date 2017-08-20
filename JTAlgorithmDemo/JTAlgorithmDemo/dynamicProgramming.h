@@ -38,6 +38,14 @@ void knapsackProblemWithBacktracking(int *weightArr,int *valueArr,int count, int
 
 
 
+/*** 字符串编辑距离 Levenshtein distance */
+#pragma  mark - 字符串编辑距离 Levenshtein distance
+
+int levenshteinDistanceWithPureRecursion(char *sourceString,char *targetString);
+
+
+
+
 
 
 #endif /* dynamicProgramming_h */

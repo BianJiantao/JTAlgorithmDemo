@@ -9,6 +9,9 @@
 #ifndef common_h
 #define common_h
 
+#include <string.h>
+#include <stdlib.h>
+
 #define  FALSE 0
 #define TRUE 1
 #define BOOL int
@@ -27,5 +30,9 @@ typedef struct {
  */
 int max_int(int a,int b);
 
+/**
+ *  获取两个 int 型整数最小值
+ */
+int min_int(int a,int b);
 
 #endif /* common_h */
