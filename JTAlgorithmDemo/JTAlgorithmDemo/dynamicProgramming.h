@@ -15,7 +15,7 @@
 
 /*** Knapsack problem(0-1背包问题) */
 #pragma  mark - Knapsack problem(0-1背包问题)
-
+#pragma mark 动态规划法
 /**
  *  动态规划法解 0-1背包问题
  *
@@ -26,6 +26,7 @@
  */
 void knapsackProblemWithDP(int *weightArr,int *valueArr,int count, int MaxWeight);
 
+#pragma mark 回溯法
 /**
  *  回溯法解 0-1背包问题
  *
@@ -39,11 +40,39 @@ void knapsackProblemWithBacktracking(int *weightArr,int *valueArr,int count, int
 
 
 /*** 字符串编辑距离 Levenshtein distance */
-#pragma  mark - 字符串编辑距离 Levenshtein distance
+#pragma  mark - 字符串编辑距离  Levenshtein distance
 
+#pragma mark 单纯递归法
+/**
+ *  单纯递归法计算 字符串最小编辑距离
+ *
+ *  @param sourceString 源字符串
+ *  @param targetString 目标字符串
+ *
+ *  @return 二者最小编辑距离
+ */
 int levenshteinDistanceWithPureRecursion(char *sourceString,char *targetString);
 
+#pragma mark 优化递归法
+/**
+ * 单纯递归法, 对同一个字符串状态会有重复计算,
+ * 可以利用动态规划思想对其优化,记录每一个状态,
+ * 如果是相同状态且计算过,直接返回,否则再进行计算
+ */
 
+
+/**
+ *  优化递归法计算 字符串最小编辑距离
+ *
+ *  @param sourceString 源字符串
+ *  @param targetString 目标字符串
+ *
+ *  @return 二者最小编辑距离
+ */
+int levenshteinDistanceWithOptimizeRecursion(char *sourceString,char *targetString);
+
+
+#pragma mark 动态规划法
 
 
 

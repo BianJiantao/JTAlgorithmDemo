@@ -257,15 +257,17 @@ char *toLowerString(char *string){
 
 
 
-
+/**
+ *  递归计算最小编辑距离
+ */
 int pureRecursion(char *src,char *dest){
     
-    if ( strlen(src)==0 || strlen(dest)==0 ) { // 其中一个字符串长度为0
-        int len = (int)(strlen(src) - strlen(dest));
+    if ( strlen(src)==0 || strlen(dest)==0 ) { // 其中一个字符串 剩余子串长度为0
         
+        int len = (int)(strlen(src) - strlen(dest));
         return abs( len );
         
-    }else if( src[0] == dest[0] ){ // 首字母相同,各后移一位
+    }else if( src[0] == dest[0] ){ // 剩余子串首字母相同,各后移一位
         
         return pureRecursion(src+1, dest+1);
         
@@ -279,16 +281,13 @@ int pureRecursion(char *src,char *dest){
         
     }
     
-    return -1;
 }
 
 
 int levenshteinDistanceWithPureRecursion(char *sourceString,char *targetString){
     
-    
     // 输出初始信息
     printf("************* 纯递归法计算字符串编辑距离 ****************\n");
-    
     printf("❓源字符串:   %s\n❓目标字符串: %s\n",sourceString,targetString);
     
     // 全转为小写
@@ -299,6 +298,7 @@ int levenshteinDistanceWithPureRecursion(char *sourceString,char *targetString){
     int distance = pureRecursion(srcLowerStr,targetLowerStr);
     
     
+    // 输出结果
     printf("❗️最小编辑距离为: %d\n",distance);
     
     printf("********************************************\n");
@@ -309,12 +309,112 @@ int levenshteinDistanceWithPureRecursion(char *sourceString,char *targetString){
     return distance;
 }
 
+#pragma mark 优化递归方法
+
+typedef struct {
+    
+    int distance; // 当前状态字符串的编辑距离
+    int stateCount; // 当前状态出现的次数
+    
+}LD_Book; // 每次递归时 字符串状态信息
+
+LD_Book **ld_book; //  ld_book[i][j] 存储每一次字符串递归时的状态
+
+int optimizeRecursion(char *sourceString,char *destString, int srcIndex, int destIndex){
+    
+        
+    if( ld_book[srcIndex][destIndex].stateCount != 0 ){ // 该状态已出现过,不再计算,直接返回
+        
+        ld_book[srcIndex][destIndex].stateCount++;
+        return ld_book[srcIndex][destIndex].distance;
+        
+    }
+    
+    int distance = 0;
+    if ( strlen(sourceString+srcIndex)==0 || strlen(destString+destIndex)==0 ) { // 其中一个字符串 剩余子串长度为0
+        
+        int len = (int)( strlen(sourceString+srcIndex) - strlen(destString+destIndex) );
+        distance = abs( len ) ;
+     
+    }else if( sourceString[srcIndex] == destString[destIndex] ){ // 剩余子串首字母相同,各后移一位
+        
+        distance = optimizeRecursion(sourceString, destString, srcIndex+1, destIndex+1);
+        
+    }else{ // 首字母不同, 进行 插入,删除,替换
+        
+        int insertDis = optimizeRecursion(sourceString, destString, srcIndex, destIndex+1) + 1; // 插入 , 比如:  A B C / D E F --> D, A B C / D, E F
+        int deleteDis = optimizeRecursion(sourceString, destString, srcIndex+1, destIndex) + 1 ; // 删除, 比如: A B C / D E F -->  B C / D E F
+        int replaceDis = optimizeRecursion(sourceString, destString, srcIndex+1, destIndex+1) + 1; // 替换, 比如: A B C / D E F --> D B C / D E F
+        
+        distance =  min_int((min_int(insertDis, deleteDis)), replaceDis); // 返回 插入,删除,替换 中的最小距离
+        
+    }
+    
+    ld_book[srcIndex][destIndex].distance = distance; // 记录当前状态
+    ld_book[srcIndex][destIndex].stateCount = 1;
+    
+    
+    return distance;
+}
 
 
+int levenshteinDistanceWithOptimizeRecursion(char *sourceString,char *destString){
+    
+    printf("************* 优化递归法计算字符串编辑距离 ****************\n");
+    printf("❓源字符串:   %s\n❓目标字符串: %s\n",sourceString,destString);
+    // 全转为小写
+    char *srcLowerStr = toLowerString(sourceString);
+    char *destLowerStr = toLowerString(destString);
+    
+//    int rowCol = min_int((int)strlen(srcLowerStr), (int)strlen(destLowerStr));
+    int row = (int)strlen(srcLowerStr) + 1 ; // + 1 是为了避免当其中一个字符串递归到末尾 '\0' 时,数组访问越界
+    int col = (int)strlen(destLowerStr) + 1 ;
+    
+    ld_book = (LD_Book* *)malloc(row * sizeof(LD_Book *));
+    for (int i=0; i<row; i++) {
+        
+        ld_book[i] = (LD_Book *)malloc( col * sizeof(LD_Book) ); // 为 ld_book[i]  的每一行申请内存
+        
+        for(int j =0 ; j<col; j++){  // ld_book 初始化
+            
+            ld_book[i][j].distance = 0;
+            ld_book[i][j].stateCount = 0;
+            
+        }
+    }
+    
+    
+    // 递归计算
+    int distance = optimizeRecursion(srcLowerStr, destLowerStr, 0, 0);
+    
+    
+    // 输出结果
+    printf("❗️最小编辑距离为: %d\n",distance);
+    
+    printf("状态记录矩阵: 各个状态的出现次数(大于1的状态进行了优化)\n");
+    for (int i=0; i<row; i++) {
+        for (int j=0; j<col; j++) {
+            
+            
+            printf("%3d ", ld_book[i][j].stateCount); // 打印各个状态的重复次数,相比于单纯的递归,大于1的状态进行了优化,
+            
+        }
+        printf("\n");
+    }
+    
+    printf("********************************************\n");
+    
+    // 释放内存
+    for (int i=0; i<row; i++) {
+        free(ld_book[i]);
+    }
+    free(ld_book);
+    
+    return distance;
+}
 
 
-
-
+/*****************************************************/
 
 
 
