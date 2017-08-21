@@ -14,7 +14,7 @@
 
 /**********0-1背包问题***********************************/
 
-#pragma mark - 0/1 背包问题
+#pragma mark - 0/1 背包问题 Knapsack Problem
 
 #pragma mark 动态规划法
 
@@ -230,9 +230,9 @@ void knapsackProblemWithBacktracking(int *weightArr,int *valueArr,int count, int
 
 
 
-/**********字符串编辑距离 Levenshtein distance***********************************/
+/********** 字符串编辑距离 Levenshtein Distance ***********************************/
 
-#pragma mark - 字符串编辑距离 Levenshtein distance
+#pragma mark - 字符串编辑距离 Levenshtein Distance
 
 #pragma mark 纯递归方法
 
@@ -240,7 +240,16 @@ void knapsackProblemWithBacktracking(int *weightArr,int *valueArr,int count, int
  *  字符串转小写
  */
 char *toLowerString(char *string){
+
+//    // string 可修改的情况下,可以这样转小写
+//    for(int i=0; string[i]!= '\0'; i++){
+//        
+//        string[i] = tolower(string[i]);
+//    }
 //    
+//    return string;
+    
+    // 如果 string 是字符串常量,上述方法不行,因为不能修改
     int len = (int)strlen(string)+1 ; // + 1 表示 字符串结束符 '\0'
     char *lower = (char *)malloc(sizeof(char)*len); // 申请内存
     
@@ -284,18 +293,18 @@ int pureRecursion(char *src,char *dest){
 }
 
 
-int levenshteinDistanceWithPureRecursion(char *sourceString,char *targetString){
+int levenshteinDistanceWithPureRecursion(char *sourceString,char *destString){
     
     // 输出初始信息
     printf("************* 纯递归法计算字符串编辑距离 ****************\n");
-    printf("❓源字符串:   %s\n❓目标字符串: %s\n",sourceString,targetString);
+    printf("❓源字符串:   %s\n❓目标字符串: %s\n",sourceString,destString);
     
     // 全转为小写
     char *srcLowerStr = toLowerString(sourceString);
-    char *targetLowerStr = toLowerString(targetString);
+    char *destLowerStr = toLowerString(destString);
     
     // 递归计算编辑距离
-    int distance = pureRecursion(srcLowerStr,targetLowerStr);
+    int distance = pureRecursion(srcLowerStr,destLowerStr);
     
     
     // 输出结果
@@ -304,7 +313,7 @@ int levenshteinDistanceWithPureRecursion(char *sourceString,char *targetString){
     printf("********************************************\n");
     
     free(srcLowerStr); // 释放内存
-    free(targetLowerStr);
+    free(destLowerStr);
     
     return distance;
 }
@@ -405,6 +414,9 @@ int levenshteinDistanceWithOptimizeRecursion(char *sourceString,char *destString
     printf("********************************************\n");
     
     // 释放内存
+    free(srcLowerStr);
+    free(destLowerStr);
+    
     for (int i=0; i<row; i++) {
         free(ld_book[i]);
     }
@@ -414,8 +426,59 @@ int levenshteinDistanceWithOptimizeRecursion(char *sourceString,char *destString
 }
 
 
+#pragma mark 动态规划法
+
+int levenshteinDistanceWithDP(char *sourceString,char *destString){
+    
+    printf("************* 动态规划法计算字符串编辑距离 ****************\n");
+    printf("❓源字符串:   %s\n❓目标字符串: %s\n",sourceString,destString);
+    // 全转为小写
+    char *srcLowerStr = toLowerString(sourceString);
+    char *destLowerStr = toLowerString(destString);
+    
+    int row = (int)strlen(srcLowerStr) + 1 ; // + 1 是考虑到空串的情形
+    int col = (int)strlen(destLowerStr) + 1 ;
+    
+    int dis[row][col];  // dis[i][j]  源字符串 1-i 与目标字符串 1-j 的最小编辑距离
+    
+    // dis 初始化
+    for(int i=0; i<col; i++) // 第一行 , 源字符串是空串
+        dis[0][i] = i;
+    for(int i=0; i<row; i++) // 第一列,  目标字符串是空串
+        dis[i][0] = i;
+    
+    
+    for (int i=1; i<row; i++) {
+        
+        for (int j=1; j<col; j++) {
+            
+            
+            if ( srcLowerStr[i-1] == destLowerStr[j-1] ) { // 末字符相等
+                
+                dis[i][j] = dis[i-1][j-1];
+                
+            }else{ // 不相等,执行 插入/删除/替换 操作
+                
+                int insertDis = dis[i][j-1] + 1; // 1,i  --> 1,j-1 , 最后一位 j 插入到末尾
+                int deleteDis = dis[i-1][j] + 1; // 1,i-1  --> 1,j , 最后一位 i 删除
+                int replaceDis = dis[i-1][j-1] + 1; // 1,i-1  --> 1,j-1 , 最后一位 i 替换为 j
+                
+                 dis[i][j] =  min_int((min_int(insertDis, deleteDis)), replaceDis); // 插入,删除,替换 中的最小距离
+            }
+            
+            
+        }
+        
+    }
+    // 输出结果
+    printf("❗️最小编辑距离为: %d\n",dis[row-1][col-1]);
+    
+    printf("********************************************\n");
+    
+    return dis[row-1][col-1];
+}
+
+
 /*****************************************************/
-
-
 
 

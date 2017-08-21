@@ -275,17 +275,20 @@ void dynamicProgrammingGo( DPproblemType dpProblemType){
             
         case DPproblemTypeLevenshteinDistance:  // 两个字符串间的最小编辑距离问题, Levenshtein Distance
             {
-                char *srcStr = "abc";
-                char *targetStr = "dBkl";
+//                char srcStr[] = "abc"; // 字符数组, 字符可修改
+//                char targetStr[] = "dBkl";
+                
+                char *srcStr = "Xabc"; // 字符串常量,字符串存储在文字常量区,字符不可修改
+                char *destStr = "dBkl";
                 
                 // *** 单纯的递归法
-                levenshteinDistanceWithPureRecursion(srcStr, targetStr);
+                levenshteinDistanceWithPureRecursion(srcStr, destStr);
                 
                 // *** 优化后的递归, 排除重复的计算
-                levenshteinDistanceWithOptimizeRecursion(srcStr, targetStr);
+                levenshteinDistanceWithOptimizeRecursion(srcStr, destStr);
                 
-                
-                
+                // ***动态规划法
+                levenshteinDistanceWithDP(srcStr, destStr);
                 
                 break;
             }

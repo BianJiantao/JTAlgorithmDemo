@@ -28,3 +28,4 @@
 2. 两个字符串的最小编辑距离问题 ( Levenshtein Distance )
     * 单纯递归法计算
     * 优化后的递归法, 排除重复的状态计算
+    * 动态规划法计算 (Levenshtein Distance算法)

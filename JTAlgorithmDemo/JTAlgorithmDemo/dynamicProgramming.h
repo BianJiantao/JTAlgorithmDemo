@@ -51,7 +51,7 @@ void knapsackProblemWithBacktracking(int *weightArr,int *valueArr,int count, int
  *
  *  @return 二者最小编辑距离
  */
-int levenshteinDistanceWithPureRecursion(char *sourceString,char *targetString);
+int levenshteinDistanceWithPureRecursion(char *sourceString,char *destString);
 
 #pragma mark 优化递归法
 /**
@@ -69,11 +69,12 @@ int levenshteinDistanceWithPureRecursion(char *sourceString,char *targetString);
  *
  *  @return 二者最小编辑距离
  */
-int levenshteinDistanceWithOptimizeRecursion(char *sourceString,char *targetString);
+int levenshteinDistanceWithOptimizeRecursion(char *sourceString,char *destString);
 
 
 #pragma mark 动态规划法
 
+int levenshteinDistanceWithDP(char *sourceString,char *destString);
 
 
 
