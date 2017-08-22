@@ -12,7 +12,7 @@
 #include "search.h"
 #include "shortestPath.h"
 #include "dynamicProgramming.h"
-
+#include "threeBucket.h"
 
 /**
  * 排序类型
@@ -301,6 +301,22 @@ void dynamicProgrammingGo( DPproblemType dpProblemType){
 }
 
 
+#pragma mark - 三个水桶等分水问题
+
+void threeBucketProblemGo(){
+    
+    int bucketCapacity[3] = {8,5,3}; // 三个水桶容量
+    int StartState[3] = {8,0,0}; // 三个水桶,初始状态
+    int EndState[3] = {4,4,0}; // 目标状态
+    
+    BucketState bucketStartState = StartState;
+    BucketState bucketEndState = EndState;
+    
+    threeBucketProblemWithDfs(bucketStartState, bucketEndState, bucketCapacity);
+    
+}
+
+
 
 #pragma mark - 主函数
 int main() {
@@ -323,6 +339,9 @@ int main() {
     dynamicProgrammingGo(DPproblemTypeKnapsackProblem);
     // 字符串编辑距离 Levenshtein Distance
     dynamicProgrammingGo(DPproblemTypeLevenshteinDistance);
+    
+// 三个水桶等分水问题,深度搜索
+    threeBucketProblemGo();
     
     
     return 0;

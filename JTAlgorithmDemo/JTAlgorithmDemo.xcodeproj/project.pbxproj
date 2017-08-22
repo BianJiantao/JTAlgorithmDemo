@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6C7AF20E1F430BDF000F6293 /* shortestPath.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C7AF20C1F430BDF000F6293 /* shortestPath.c */; settings = {ASSET_TAGS = (); }; };
-		6C7AF2271F46E098000F6293 /* dynamicProgramming.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C7AF2251F46E098000F6293 /* dynamicProgramming.c */; settings = {ASSET_TAGS = (); }; };
-		6C7AF2291F471035000F6293 /* common.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C7AF2281F471035000F6293 /* common.c */; settings = {ASSET_TAGS = (); }; };
+		6C7AF2461F4AD70B000F6293 /* common.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C7AF2371F4AD70B000F6293 /* common.c */; settings = {ASSET_TAGS = (); }; };
+		6C7AF2471F4AD70B000F6293 /* dynamicProgramming.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C7AF23A1F4AD70B000F6293 /* dynamicProgramming.c */; settings = {ASSET_TAGS = (); }; };
+		6C7AF2481F4AD70B000F6293 /* search.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C7AF23D1F4AD70B000F6293 /* search.c */; settings = {ASSET_TAGS = (); }; };
+		6C7AF2491F4AD70B000F6293 /* shortestPath.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C7AF2401F4AD70B000F6293 /* shortestPath.c */; settings = {ASSET_TAGS = (); }; };
+		6C7AF24A1F4AD70B000F6293 /* sort.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C7AF2431F4AD70B000F6293 /* sort.c */; settings = {ASSET_TAGS = (); }; };
+		6C7AF24D1F4AD7E0000F6293 /* threeBucket.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C7AF24B1F4AD7E0000F6293 /* threeBucket.c */; settings = {ASSET_TAGS = (); }; };
 		6CE6EEE71F419C09006065D7 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 6CE6EEE61F419C09006065D7 /* main.c */; };
-		6CE6EEEF1F419CDD006065D7 /* sort.c in Sources */ = {isa = PBXBuildFile; fileRef = 6CE6EEED1F419CDD006065D7 /* sort.c */; settings = {ASSET_TAGS = (); }; };
-		6CE6EEF21F428F4B006065D7 /* search.c in Sources */ = {isa = PBXBuildFile; fileRef = 6CE6EEF01F428F4B006065D7 /* search.c */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,18 +29,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6C7AF20C1F430BDF000F6293 /* shortestPath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shortestPath.c; sourceTree = "<group>"; };
-		6C7AF20D1F430BDF000F6293 /* shortestPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shortestPath.h; sourceTree = "<group>"; };
-		6C7AF2251F46E098000F6293 /* dynamicProgramming.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dynamicProgramming.c; sourceTree = "<group>"; };
-		6C7AF2261F46E098000F6293 /* dynamicProgramming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dynamicProgramming.h; sourceTree = "<group>"; };
-		6C7AF2281F471035000F6293 /* common.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = common.c; sourceTree = "<group>"; };
+		6C7AF2371F4AD70B000F6293 /* common.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = common.c; sourceTree = "<group>"; };
+		6C7AF2381F4AD70B000F6293 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		6C7AF23A1F4AD70B000F6293 /* dynamicProgramming.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dynamicProgramming.c; sourceTree = "<group>"; };
+		6C7AF23B1F4AD70B000F6293 /* dynamicProgramming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dynamicProgramming.h; sourceTree = "<group>"; };
+		6C7AF23D1F4AD70B000F6293 /* search.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = search.c; sourceTree = "<group>"; };
+		6C7AF23E1F4AD70B000F6293 /* search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = search.h; sourceTree = "<group>"; };
+		6C7AF2401F4AD70B000F6293 /* shortestPath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shortestPath.c; sourceTree = "<group>"; };
+		6C7AF2411F4AD70B000F6293 /* shortestPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shortestPath.h; sourceTree = "<group>"; };
+		6C7AF2431F4AD70B000F6293 /* sort.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sort.c; sourceTree = "<group>"; };
+		6C7AF2441F4AD70B000F6293 /* sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sort.h; sourceTree = "<group>"; };
+		6C7AF24B1F4AD7E0000F6293 /* threeBucket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = threeBucket.c; sourceTree = "<group>"; };
+		6C7AF24C1F4AD7E0000F6293 /* threeBucket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = threeBucket.h; sourceTree = "<group>"; };
 		6CE6EEE31F419C09006065D7 /* JTAlgorithmDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = JTAlgorithmDemo; sourceTree = BUILT_PRODUCTS_DIR; };
-		6CE6EEE61F419C09006065D7 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		6CE6EEED1F419CDD006065D7 /* sort.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sort.c; sourceTree = "<group>"; };
-		6CE6EEEE1F419CDD006065D7 /* sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sort.h; sourceTree = "<group>"; };
-		6CE6EEF01F428F4B006065D7 /* search.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = search.c; sourceTree = "<group>"; };
-		6CE6EEF11F428F4B006065D7 /* search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = search.h; sourceTree = "<group>"; };
-		6CE6EEF31F4295A0006065D7 /* common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
+		6CE6EEE61F419C09006065D7 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = main.c; path = JTAlgorithmDemo/main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,10 +56,65 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C7AF2361F4AD70B000F6293 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6C7AF2371F4AD70B000F6293 /* common.c */,
+				6C7AF2381F4AD70B000F6293 /* common.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		6C7AF2391F4AD70B000F6293 /* DynamicProgramming */ = {
+			isa = PBXGroup;
+			children = (
+				6C7AF23A1F4AD70B000F6293 /* dynamicProgramming.c */,
+				6C7AF23B1F4AD70B000F6293 /* dynamicProgramming.h */,
+			);
+			path = DynamicProgramming;
+			sourceTree = "<group>";
+		};
+		6C7AF23C1F4AD70B000F6293 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				6C7AF23D1F4AD70B000F6293 /* search.c */,
+				6C7AF23E1F4AD70B000F6293 /* search.h */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		6C7AF23F1F4AD70B000F6293 /* ShortestPath */ = {
+			isa = PBXGroup;
+			children = (
+				6C7AF2401F4AD70B000F6293 /* shortestPath.c */,
+				6C7AF2411F4AD70B000F6293 /* shortestPath.h */,
+			);
+			path = ShortestPath;
+			sourceTree = "<group>";
+		};
+		6C7AF2421F4AD70B000F6293 /* Sort */ = {
+			isa = PBXGroup;
+			children = (
+				6C7AF2431F4AD70B000F6293 /* sort.c */,
+				6C7AF2441F4AD70B000F6293 /* sort.h */,
+			);
+			path = Sort;
+			sourceTree = "<group>";
+		};
+		6C7AF2451F4AD70B000F6293 /* ThreeBucketProblem */ = {
+			isa = PBXGroup;
+			children = (
+				6C7AF24B1F4AD7E0000F6293 /* threeBucket.c */,
+				6C7AF24C1F4AD7E0000F6293 /* threeBucket.h */,
+			);
+			path = ThreeBucketProblem;
+			sourceTree = "<group>";
+		};
 		6CE6EEDA1F419C09006065D7 = {
 			isa = PBXGroup;
 			children = (
 				6CE6EEE51F419C09006065D7 /* JTAlgorithmDemo */,
+				6CE6EEE61F419C09006065D7 /* main.c */,
 				6CE6EEE41F419C09006065D7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -72,17 +130,12 @@
 		6CE6EEE51F419C09006065D7 /* JTAlgorithmDemo */ = {
 			isa = PBXGroup;
 			children = (
-				6CE6EEE61F419C09006065D7 /* main.c */,
-				6CE6EEED1F419CDD006065D7 /* sort.c */,
-				6CE6EEEE1F419CDD006065D7 /* sort.h */,
-				6CE6EEF01F428F4B006065D7 /* search.c */,
-				6CE6EEF11F428F4B006065D7 /* search.h */,
-				6CE6EEF31F4295A0006065D7 /* common.h */,
-				6C7AF2281F471035000F6293 /* common.c */,
-				6C7AF20C1F430BDF000F6293 /* shortestPath.c */,
-				6C7AF20D1F430BDF000F6293 /* shortestPath.h */,
-				6C7AF2251F46E098000F6293 /* dynamicProgramming.c */,
-				6C7AF2261F46E098000F6293 /* dynamicProgramming.h */,
+				6C7AF2421F4AD70B000F6293 /* Sort */,
+				6C7AF23C1F4AD70B000F6293 /* Search */,
+				6C7AF2391F4AD70B000F6293 /* DynamicProgramming */,
+				6C7AF23F1F4AD70B000F6293 /* ShortestPath */,
+				6C7AF2451F4AD70B000F6293 /* ThreeBucketProblem */,
+				6C7AF2361F4AD70B000F6293 /* Common */,
 			);
 			path = JTAlgorithmDemo;
 			sourceTree = "<group>";
@@ -143,12 +196,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C7AF2291F471035000F6293 /* common.c in Sources */,
-				6C7AF20E1F430BDF000F6293 /* shortestPath.c in Sources */,
-				6CE6EEF21F428F4B006065D7 /* search.c in Sources */,
-				6C7AF2271F46E098000F6293 /* dynamicProgramming.c in Sources */,
+				6C7AF2471F4AD70B000F6293 /* dynamicProgramming.c in Sources */,
+				6C7AF2461F4AD70B000F6293 /* common.c in Sources */,
 				6CE6EEE71F419C09006065D7 /* main.c in Sources */,
-				6CE6EEEF1F419CDD006065D7 /* sort.c in Sources */,
+				6C7AF24A1F4AD70B000F6293 /* sort.c in Sources */,
+				6C7AF2491F4AD70B000F6293 /* shortestPath.c in Sources */,
+				6C7AF2481F4AD70B000F6293 /* search.c in Sources */,
+				6C7AF24D1F4AD7E0000F6293 /* threeBucket.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
