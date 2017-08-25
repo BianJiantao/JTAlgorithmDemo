@@ -13,6 +13,7 @@
 		6C7AF2491F4AD70B000F6293 /* shortestPath.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C7AF2401F4AD70B000F6293 /* shortestPath.c */; settings = {ASSET_TAGS = (); }; };
 		6C7AF24A1F4AD70B000F6293 /* sort.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C7AF2431F4AD70B000F6293 /* sort.c */; settings = {ASSET_TAGS = (); }; };
 		6C7AF24D1F4AD7E0000F6293 /* threeBucket.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C7AF24B1F4AD7E0000F6293 /* threeBucket.c */; settings = {ASSET_TAGS = (); }; };
+		6C902A701F4E69B4006B80B2 /* geneticAlgorithm.c in Sources */ = {isa = PBXBuildFile; fileRef = 6C902A6E1F4E69B4006B80B2 /* geneticAlgorithm.c */; settings = {ASSET_TAGS = (); }; };
 		6CE6EEE71F419C09006065D7 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 6CE6EEE61F419C09006065D7 /* main.c */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,8 @@
 		6C7AF2441F4AD70B000F6293 /* sort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sort.h; sourceTree = "<group>"; };
 		6C7AF24B1F4AD7E0000F6293 /* threeBucket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = threeBucket.c; sourceTree = "<group>"; };
 		6C7AF24C1F4AD7E0000F6293 /* threeBucket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = threeBucket.h; sourceTree = "<group>"; };
+		6C902A6E1F4E69B4006B80B2 /* geneticAlgorithm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = geneticAlgorithm.c; sourceTree = "<group>"; };
+		6C902A6F1F4E69B4006B80B2 /* geneticAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geneticAlgorithm.h; sourceTree = "<group>"; };
 		6CE6EEE31F419C09006065D7 /* JTAlgorithmDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = JTAlgorithmDemo; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CE6EEE61F419C09006065D7 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = main.c; path = JTAlgorithmDemo/main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,6 +113,15 @@
 			path = ThreeBucketProblem;
 			sourceTree = "<group>";
 		};
+		6C902A6A1F4E6915006B80B2 /* GeneticAlgorithm */ = {
+			isa = PBXGroup;
+			children = (
+				6C902A6E1F4E69B4006B80B2 /* geneticAlgorithm.c */,
+				6C902A6F1F4E69B4006B80B2 /* geneticAlgorithm.h */,
+			);
+			path = GeneticAlgorithm;
+			sourceTree = "<group>";
+		};
 		6CE6EEDA1F419C09006065D7 = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +147,7 @@
 				6C7AF2391F4AD70B000F6293 /* DynamicProgramming */,
 				6C7AF23F1F4AD70B000F6293 /* ShortestPath */,
 				6C7AF2451F4AD70B000F6293 /* ThreeBucketProblem */,
+				6C902A6A1F4E6915006B80B2 /* GeneticAlgorithm */,
 				6C7AF2361F4AD70B000F6293 /* Common */,
 			);
 			path = JTAlgorithmDemo;
@@ -197,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C7AF2471F4AD70B000F6293 /* dynamicProgramming.c in Sources */,
+				6C902A701F4E69B4006B80B2 /* geneticAlgorithm.c in Sources */,
 				6C7AF2461F4AD70B000F6293 /* common.c in Sources */,
 				6CE6EEE71F419C09006065D7 /* main.c in Sources */,
 				6C7AF24A1F4AD70B000F6293 /* sort.c in Sources */,

@@ -1,5 +1,5 @@
 # JTAlgorithmDemo
-# 算法学习 -- Algorithm Learning -- オモシロイアルゴリズム、勉強しようぜ
+# 算法学习 - Algorithm Learning - アルゴリズム、勉強しようぜ
 
 ## 排序算法 -- Sort Algorithm
 
@@ -32,3 +32,7 @@
 
 ## 三个水桶等分水问题 -- Three-Bucket Problem
 * 深度搜索遍历水桶状态空间
+
+## 遗传算法 -- Genetic Algorithm
+* 遗传算法解 0-1背包问题
+

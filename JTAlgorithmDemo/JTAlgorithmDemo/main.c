@@ -13,6 +13,7 @@
 #include "shortestPath.h"
 #include "dynamicProgramming.h"
 #include "threeBucket.h"
+#include "geneticAlgorithm.h"
 
 /**
  * 排序类型
@@ -316,7 +317,20 @@ void threeBucketProblemGo(){
     
 }
 
+#pragma mark - 遗传算法
 
+void geneticAlgorithmGo(){
+    
+    int valueArr[7]={10,40,30,50,35,40,30};      // 物品权重(价值)
+    int weightArr[7]={35,30,60,50,40,10,25};      // 物品大小
+    int MaxWeight = 150;  // 背包所能承受的最大重量
+    
+    // 获取物品个数
+    int count = sizeof(weightArr)/sizeof(weightArr[0]);
+    
+    knapsackProblemWithGA(weightArr, valueArr, count, MaxWeight); // 解 0-1 背包问题
+    
+}
 
 #pragma mark - 主函数
 int main() {
@@ -342,6 +356,11 @@ int main() {
     
 // 三个水桶等分水问题,深度搜索
     threeBucketProblemGo();
+    
+// 遗传算法
+    // 解 0-1 背包问题
+    geneticAlgorithmGo();
+    
     
     
     return 0;
