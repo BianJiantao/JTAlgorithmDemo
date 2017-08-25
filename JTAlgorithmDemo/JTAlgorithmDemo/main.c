@@ -325,6 +325,10 @@ void geneticAlgorithmGo(){
     int weightArr[7]={35,30,60,50,40,10,25};      // 物品大小
     int MaxWeight = 150;  // 背包所能承受的最大重量
     
+//    int weightArr[5]={2,2,6,5,4};      // 物品权重(价值)
+//    int valueArr[5]={6,3,5,4,6};      // 物品大小
+//    int MaxWeight = 10;  // 背包所能承受的最大重量
+    
     // 获取物品个数
     int count = sizeof(weightArr)/sizeof(weightArr[0]);
     

@@ -255,6 +255,7 @@ void threeBucketProblemWithDfs(BucketState bucketStartState, BucketState bucketE
     }
     printf("⭕️最小倒水次数是方案: %d,次数是: %d\n",sol,min);
     
+    printf("********************************************\n");
     // 释放内存
     for (int i=0; i<MaxStateCount; i++) {
         free(states.bucketStates[i]);
