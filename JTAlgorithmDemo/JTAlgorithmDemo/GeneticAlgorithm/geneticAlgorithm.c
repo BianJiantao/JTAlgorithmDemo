@@ -27,7 +27,7 @@
 #include "geneticAlgorithm.h"
 #include "common.h"
 
-const int RandomMax = 10000;
+const int RandomMax = 1000000;
 const int Population_Size = 40; // 种群大小
 const int Population_Max_Genrations = 500; // 进化总代数
 const double Population_CrossProbability = 0.8; // 种群交叉概率
@@ -72,7 +72,7 @@ void population_Initialize(Population *population){
     
 }
 
-int getBestFitnessObject(Population *population, Population *bestObject){
+int getBestFitnessObject(Population *population, Population *bestObject){ // 获取个体最大适应度
     
     int best = 0;
     for (int i=0; i<Population_Size; i++) {
@@ -88,6 +88,7 @@ int getBestFitnessObject(Population *population, Population *bestObject){
     return  best;
 }
 
+// 计算种群个体适应度
 void population_EnvaluateFitness(Population *population,int *weightArr,int *valueArr, int *populationFitnessSum){
     int i,j;
     int weight;
@@ -114,6 +115,10 @@ void population_EnvaluateFitness(Population *population,int *weightArr,int *valu
     }
 }
 
+/**
+ *  获取选中的个体编号,,遍历种群查找
+ *
+ */
 int indexForSelectObject(Population *population,double randomP){  // 轮盘赌的方式选择
     
     
@@ -128,7 +133,7 @@ int indexForSelectObject(Population *population,double randomP){  // 轮盘赌�
         
     }else{  // 随机数落在其他个体的概率区间
         
-        for ( int j=0; j<Population_Size; j++) {
+        for ( int j=0; j<Population_Size; j++) { // 遍历种群查找
             
             if ( (randomP > population[j].amassProbability)
                 &&(randomP <= population[j+1].amassProbability) ) {
@@ -140,7 +145,68 @@ int indexForSelectObject(Population *population,double randomP){  // 轮盘赌�
     return getBestFitnessObject(population, NULL); // return -1 避免坏内存访问,不返回-1.默认返回当前适应度最好的那一个,正常情况下,不会来到这一步.如果来到这一步,说明代码存在问题
 }
 
-void copyPopulationData(Population *srcPop,Population *destPop){
+/**
+ *  获取选中的个体编号,,二分查找 / 迭代实现
+ *
+ */
+int indexForSelectObjectWithBinSearch(Population *population,int start,int end,double randomP){
+    
+    int mid = 0;
+    int left = start, right = end;
+    
+//    double a[Population_Size];
+//    for (int i=0; i<Population_Size; i++) {
+//        
+//        a[i] = population[i].amassProbability;
+//    }
+//    
+    
+    while ( left <= right ) {
+        
+        mid = left + (right - left) * 0.5;
+        
+        if (mid == 0)
+            return 0;
+        
+        if ( (randomP > population[mid-1].amassProbability)
+            &&(randomP <= population[mid].amassProbability) ) // 找到
+            return mid;
+        else if( randomP <= population[mid-1].amassProbability ){ // 找左边
+            right = mid - 1;
+        }else{   // 找右边
+            left = mid + 1;
+        }
+        
+    }
+    
+    return getBestFitnessObject(population, NULL);
+    
+}
+/**
+ *  获取选中的个体编号,, 二分查找 / 递归实现
+ *
+ */
+int indexForSelectObjectBinSearchRecursion(Population *population,int start,int end,double randomP){
+    
+    if(start > end) // 没找到
+        return getBestFitnessObject(population, NULL);
+    
+    int mid = start + (end - start) * 0.5;
+    if (mid == 0)
+        return 0;
+    
+    if ( (randomP > population[mid-1].amassProbability)
+        &&(randomP <= population[mid].amassProbability) )
+        return mid;
+    else if ( randomP <= population[mid-1].amassProbability ){
+        return indexForSelectObjectBinSearchRecursion(population, start, mid-1, randomP);
+    }else{
+        return indexForSelectObjectBinSearchRecursion(population, mid+1, end, randomP);
+    }
+
+}
+
+void copyPopulationData(Population *srcPop,Population *destPop){ // 拷贝种群个体数据
     
     destPop->amassProbability = srcPop->amassProbability;
     destPop->selectProbability = srcPop->selectProbability;
@@ -169,7 +235,15 @@ void population_Select(Population *population,int fitnessSum){ // 选择个体�
     for ( i=0; i<Population_Size; i++) {
         
         randomP = (double)arc4random_uniform(RandomMax) / RandomMax; // 随机生成一个 [0,1) 之间的数
-        selectIndex = indexForSelectObject(population, randomP); // 获取选中的个体编号
+        
+    // 获取选中的个体编号
+        // 遍历种群查找
+//        selectIndex = indexForSelectObject(population, randomP);
+        // 二分查找, 迭代
+//        selectIndex = indexForSelectObjectWithBinSearch(population, 0, Population_Size-1, randomP);
+        // 二分查找,递归
+        selectIndex = indexForSelectObjectBinSearchRecursion(population, 0, Population_Size-1, randomP);
+        
         copyPopulationData(&population[selectIndex],&tempPop[i]); // 临时存储选中的个体数据
     }
     
