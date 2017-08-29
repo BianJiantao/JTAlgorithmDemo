@@ -68,7 +68,7 @@ typedef enum {
 void sortGo(SortType sortType){
     
     // 待排序数列
-    int array[] = {1,53,5,9,4,45,21,7,3,4,0};
+    int array[] = {1,53,5,9,4,45,21,7,3,4,0}; //{1,3,5,8,23,56};
     // 数列最大值.作为最大的桶
     int maxValue = 100;
     // 获取数组长度
@@ -81,7 +81,7 @@ void sortGo(SortType sortType){
             break;
             
         case SortTypeBubble:
-            // 2> 冒泡排序  时间复杂度: O( N^2 )
+            // 2> 冒泡排序  时间复杂度: O( N^2 )   // 有优化的余地
                 bubbleSort(array, arrayLength);
             break;
             

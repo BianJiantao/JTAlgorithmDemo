@@ -70,6 +70,11 @@ void displaySortedArray(int sorted[],int length){
 
 /**********冒泡排序*********************/
 
+/* TIPS: 优化的途径
+ * 1. 最简单的改进方法是加入一标志性变量exchange，用于标志某一趟排序过程中是否有数据交换，如果进行某一趟排序后并没有进行数据交换，则说明数据已经按要求排列好，可立即结束排序，避免不必要的比较过程
+ * 2. 设置一个pos指针，pos后面的数据在上一轮排序中没有发生交换，下一轮排序时，就对pos之后的数据不再比较。
+ * 3. 可以在每次循环之中进行正反两次冒泡，分别找到最大值和最小值，下轮循环直接去掉两头,如此可使排序的轮数减少一半。
+ */
 
 #pragma mark - 冒泡排序
 
@@ -85,9 +90,11 @@ void bubbleSort(int a[], int length){
     printf("\n");
     
     // >排序
+    
 //    int temp = 0;
+    BOOL isSorted = TRUE; // 传入的数据是否已是有序的,默认 是
     for (int i = 0; i < length-1; i++) {
-        
+        isSorted = TRUE;
         for (int j = 0; j < length -1 - i; j++) {
             
             if (a[j] > a[j+1]) { // 从小到大
@@ -100,7 +107,15 @@ void bubbleSort(int a[], int length){
 //                a[j] = a[j+1];
 //                a[j+1] = temp;
                 
+                isSorted = FALSE; // 发生了交换,是无序
             }
+        }
+        
+        if (isSorted) { // 上一轮比较, 数据是未发生交换,已是有序的,直接返回   最好的排序情况, 第一轮就是有序的,复杂度 O(N)
+            
+            printf("数据已是有序的\n");
+            printf("******************************\n");
+            return;
         }
         
         
